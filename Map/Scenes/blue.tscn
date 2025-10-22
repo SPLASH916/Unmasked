@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://dntopi6buytlt"]
+
+[ext_resource type="Script" uid="uid://cp373nxln3yox" path="res://Map/Scripts/blue.gd" id="1_7rt5d"]
+[ext_resource type="Texture2D" uid="uid://bbqsslp1ogo0x" path="res://icon.svg" id="1_turjq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m04uu"]
+size = Vector2(192, 62)
+
+[node name="Blue" type="StaticBody2D"]
+script = ExtResource("1_7rt5d")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0.8258104, 0.0015440345, 0.9505597, 1)
+scale = Vector2(1.5, 0.484)
+texture = ExtResource("1_turjq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_m04uu")

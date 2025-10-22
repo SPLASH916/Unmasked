@@ -1,0 +1,46 @@
+[gd_scene load_steps=6 format=3 uid="uid://c8da10r1wixhq"]
+
+[ext_resource type="Texture2D" uid="uid://bbqsslp1ogo0x" path="res://icon.svg" id="1_mdlsp"]
+[ext_resource type="PackedScene" uid="uid://djlic05xcybg7" path="res://Player/Scenes/the_masked.tscn" id="2_wdpf6"]
+[ext_resource type="PackedScene" uid="uid://bkpref7gwqyfr" path="res://Map/Scenes/red.tscn" id="3_r6pdy"]
+[ext_resource type="PackedScene" uid="uid://dntopi6buytlt" path="res://Map/Scenes/blue.tscn" id="4_jnj0i"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_wdpf6"]
+
+[node name="Map" type="Node2D"]
+
+[node name="Icon" type="Sprite2D" parent="."]
+position = Vector2(12939.376, 496.50003)
+scale = Vector2(202.17775, 7.757812)
+texture = ExtResource("1_mdlsp")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Icon"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Icon/StaticBody2D"]
+position = Vector2(-64, -64.00001)
+scale = Vector2(0.004946143, 0.12890233)
+shape = SubResource("WorldBoundaryShape2D_wdpf6")
+
+[node name="The Masked" parent="." instance=ExtResource("2_wdpf6")]
+position = Vector2(1149, -112)
+
+[node name="Red" parent="." instance=ExtResource("3_r6pdy")]
+position = Vector2(1922, -271)
+
+[node name="Blue" parent="." instance=ExtResource("4_jnj0i")]
+position = Vector2(1344, -55)
+
+[node name="Blue2" parent="." instance=ExtResource("4_jnj0i")]
+position = Vector2(1710, -228)
+
+[node name="Red2" parent="." instance=ExtResource("3_r6pdy")]
+position = Vector2(1555, -136)
+
+[node name="Blue3" parent="." instance=ExtResource("4_jnj0i")]
+position = Vector2(2133, -207)
+
+[node name="Red3" parent="." instance=ExtResource("3_r6pdy")]
+position = Vector2(2346, -133)
+
+[node name="Blue4" parent="." instance=ExtResource("4_jnj0i")]
+position = Vector2(2560, -48)
