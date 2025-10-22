@@ -6,7 +6,7 @@ extends CharacterBody2D
 @export var mask2 = false
 @export var mask3 = false
 const SPEED = 300.0
-const JUMP_VELOCITY = -450.0
+const JUMP_VELOCITY = -500.0
 
 
 func _physics_process(delta: float) -> void:
