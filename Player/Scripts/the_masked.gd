@@ -6,22 +6,39 @@ extends CharacterBody2D
 @export var mask2 = false
 @export var mask3 = false
 
+@onready var coyote_timer: Timer = $CoyoteTimer
+@onready var jump_buffer_timer: Timer = $JumpBufferTimer
+
+var coyotetime = false
+
 const SPEED = 300.0
-const JUMP_VELOCITY = -500.0
+const jumphight :float = -400
+var gravity: float = 12
+const max_gravity: float =14.5
 
 
 func _physics_process(delta: float) -> void:
 	if allowmoving:
-		#gravity
-		if not is_on_floor():
-			velocity += get_gravity() * delta
 		#jump
 		if is_on_floor():
-			if Input.is_action_just_pressed("Jump"):
-				velocity.y = JUMP_VELOCITY
-		elif velocity.y < 0:
+			coyotetime = false
+			gravity = lerp(gravity, 12.0, 12*delta)
+		else:
+			gravity = lerp(gravity, max_gravity, 12*delta)
+			if coyote_timer.is_stopped() and !coyotetime:
+				$CoyoteTimer.start()
+				coyotetime = true
 			if Input.is_action_just_released("Jump") or is_on_ceiling():
-				velocity.y *=0.5
+				velocity.y *= 0.5
+		if Input.is_action_just_pressed("Jump"):
+			if $JumpBufferTimer.is_stopped():
+				$JumpBufferTimer.start()
+		if !jump_buffer_timer.is_stopped() and (!coyote_timer.is_stopped() or is_on_floor()):
+			velocity.y = jumphight
+			$CoyoteTimer.stop()
+			$JumpBufferTimer.stop()
+			coyotetime = true
+		velocity.y += gravity
 		#movement
 		var direction := Input.get_axis("Left", "Right")
 		if direction:
