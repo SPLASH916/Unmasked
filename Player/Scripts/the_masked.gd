@@ -5,8 +5,9 @@ extends CharacterBody2D
 @export var mask1 = false
 @export var mask2 = false
 @export var mask3 = false
+
 const SPEED = 300.0
-const JUMP_VELOCITY = -450.0
+const JUMP_VELOCITY = -500.0
 
 
 func _physics_process(delta: float) -> void:
@@ -55,6 +56,11 @@ func _process(delta: float) -> void:
 	if mask1 and mask2 and mask3 == false:
 		mask0 = true
 	if Input.is_action_just_pressed("Mask1"):
+		$MaskAnimation/MaskTransitionSound.play()
+		$MaskAnimation.play("Mask-Transition")
+		$MaskAnimation.visible = true
+		await $MaskAnimation.animation_finished
+		$MaskAnimation.visible = false
 		if mask1 != true:
 			mask1 = true
 			mask0 = false
@@ -64,6 +70,11 @@ func _process(delta: float) -> void:
 			mask1 = false
 			mask0 = true
 	if Input.is_action_just_pressed("Mask2"):
+		$MaskAnimation/MaskTransitionSound.play()
+		$MaskAnimation.play("Mask-Transition")
+		$MaskAnimation.visible = true
+		await $MaskAnimation.animation_finished
+		$MaskAnimation.visible = false
 		if mask2 != true:
 			mask2 = true
 			mask0 = false
@@ -73,6 +84,11 @@ func _process(delta: float) -> void:
 			mask2 = false
 			mask0 = true
 	if Input.is_action_just_pressed("Mask3"):
+		$MaskAnimation/MaskTransitionSound.play()
+		$MaskAnimation.play("Mask-Transition")
+		$MaskAnimation.visible = true
+		await $MaskAnimation.animation_finished
+		$MaskAnimation.visible = false
 		if mask3 != true:
 			mask3 = true
 			mask0 = false
@@ -83,8 +99,4 @@ func _process(delta: float) -> void:
 			mask0 = true
 	#mask transition
 	if Input.is_action_just_pressed("Mask1") or Input.is_action_just_pressed("Mask2") or Input.is_action_just_pressed("Mask3"):
-		$MaskAnimation/MaskTransitionSound.play()
-		$MaskAnimation.play("Mask-Transition")
-		$MaskAnimation.visible = true
-		await $MaskAnimation.animation_finished
-		$MaskAnimation.visible = false
+		pass

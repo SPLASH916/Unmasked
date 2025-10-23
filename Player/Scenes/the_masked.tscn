@@ -540,7 +540,7 @@ script = ExtResource("1_amb87")
 
 [node name="PlayerAnimation" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_04w6v")
-animation = &"Run-mask0"
+animation = &"Idle-mask3"
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
