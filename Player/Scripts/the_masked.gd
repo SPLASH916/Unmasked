@@ -7,16 +7,16 @@ extends CharacterBody2D
 @export var mask3 = false
 var current_run_animation = "Run-mask0"
 var current_idle_animation = "Idle-mask0"
+var current_jumping_animation = "Jumping-mask0"
+var current_falling_animation = "Falling-mask0"
 @onready var coyote_timer: Timer = $CoyoteTimer
 @onready var jump_buffer_timer: Timer = $JumpBufferTimer
 
 var coyotetime = false
-var mili = 0.0
 const SPEED = 300.0
 const jumphight = -400
 var gravity = 12.0
 const max_gravity =14.5
-
 
 func _physics_process(delta: float) -> void:
 	if allowmoving:
@@ -47,11 +47,17 @@ func _physics_process(delta: float) -> void:
 		else:
 			velocity.x = move_toward(velocity.x, 0, SPEED)
 		#movement animation
-		if direction != 0:
+		if direction != 0 :
 			$PlayerAnimation.flip_h = direction < 0
 			$MaskAnimation.flip_h = direction < 0
-			$PlayerAnimation.play(current_run_animation)
-		else:
+			if is_on_floor():
+				$PlayerAnimation.play(current_run_animation)
+		if !is_on_floor():
+			if velocity.y < 0:
+				$PlayerAnimation.play(current_jumping_animation)
+			if velocity.y > 0:
+				$PlayerAnimation.play(current_falling_animation)
+		if direction == 0 and is_on_floor():
 			$PlayerAnimation.play(current_idle_animation)
 		move_and_slide()
 		
@@ -60,6 +66,8 @@ func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("Mask1"):
 		current_run_animation = current_run_animation.replace(current_run_animation, "Run-mask1")
 		current_idle_animation = current_idle_animation.replace(current_idle_animation, "Idle-mask1")
+		current_jumping_animation = current_jumping_animation.replace(current_jumping_animation, "Jumping-mask1")
+		current_falling_animation = current_falling_animation.replace(current_falling_animation, "Falling-mask1")
 		$MaskAnimation/MaskTransitionSound.play()
 		$MaskAnimation.play("Mask-Transition")
 		$MaskAnimation.visible = true
@@ -72,12 +80,16 @@ func _process(delta: float) -> void:
 		else:
 			current_run_animation = current_run_animation.replace(current_run_animation, "Run-mask0")
 			current_idle_animation = current_idle_animation.replace(current_idle_animation, "Idle-mask0")
+			current_jumping_animation = current_jumping_animation.replace(current_jumping_animation, "Jumping-mask0")
+			current_falling_animation = current_falling_animation.replace(current_falling_animation, "Falling-mask0")
 			mask1 = false
 			mask0 = true
 		$MaskAnimation.visible = false
 	if Input.is_action_just_pressed("Mask2"):
 		current_run_animation = current_run_animation.replace(current_run_animation, "Run-mask2")
 		current_idle_animation = current_idle_animation.replace(current_idle_animation, "Idle-mask2")
+		current_jumping_animation = current_jumping_animation.replace(current_jumping_animation, "Jumping-mask2")
+		current_falling_animation = current_falling_animation.replace(current_falling_animation, "Falling-mask2")
 		$MaskAnimation/MaskTransitionSound.play()
 		$MaskAnimation.play("Mask-Transition")
 		$MaskAnimation.visible = true
@@ -90,12 +102,16 @@ func _process(delta: float) -> void:
 		else:
 			current_run_animation = current_run_animation.replace(current_run_animation, "Run-mask0")
 			current_idle_animation = current_idle_animation.replace(current_idle_animation, "Idle-mask0")
+			current_jumping_animation = current_jumping_animation.replace(current_jumping_animation, "Jumping-mask0")
+			current_falling_animation = current_falling_animation.replace(current_falling_animation, "Falling-mask0")
 			mask2 = false
 			mask0 = true
 		$MaskAnimation.visible = false
 	if Input.is_action_just_pressed("Mask3"):
 		current_run_animation = current_run_animation.replace(current_run_animation, "Run-mask3")
 		current_idle_animation = current_idle_animation.replace(current_idle_animation, "Idle-mask3")
+		current_jumping_animation = current_jumping_animation.replace(current_jumping_animation, "Jumping-mask3")
+		current_falling_animation = current_falling_animation.replace(current_falling_animation, "Falling-mask3")
 		$MaskAnimation/MaskTransitionSound.play()
 		$MaskAnimation.play("Mask-Transition")
 		$MaskAnimation.visible = true
@@ -108,6 +124,8 @@ func _process(delta: float) -> void:
 		else:
 			current_run_animation = current_run_animation.replace(current_run_animation, "Run-mask0")
 			current_idle_animation = current_idle_animation.replace(current_idle_animation, "Idle-mask0")
+			current_jumping_animation = current_jumping_animation.replace(current_jumping_animation, "Jumping-mask0")
+			current_falling_animation = current_falling_animation.replace(current_falling_animation, "Falling-mask0")
 			mask3 = false
 			mask0 = true
 		$MaskAnimation.visible = false
