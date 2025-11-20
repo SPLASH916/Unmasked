@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://dva7ie7qkoh55"]
+
+[ext_resource type="Script" uid="uid://rps1s2b6brcd" path="res://Map/Scripts/kys.gd" id="1_rbgko"]
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_rbgko"]
+b = Vector2(9999, 0)
+
+[node name="KYS" type="Area2D"]
+script = ExtResource("1_rbgko")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("SegmentShape2D_rbgko")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

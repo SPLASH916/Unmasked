@@ -18,6 +18,9 @@ const jumphight = -390
 var gravity = 12.0
 const max_gravity =14.5
 
+func _on_ready() -> void:
+	position = Vector2(819,-63)
+	
 func _physics_process(delta: float) -> void:
 	if allowmoving:
 		#jump
@@ -36,14 +39,18 @@ func _physics_process(delta: float) -> void:
 				$JumpBufferTimer.start()
 		if !jump_buffer_timer.is_stopped() and (!coyote_timer.is_stopped() or is_on_floor()):
 			velocity.y = jumphight
+			$Jump.play()
 			$CoyoteTimer.stop()
 			$JumpBufferTimer.stop()
 			coyotetime = true
 		velocity.y += gravity
+
 		#movement
 		var direction := Input.get_axis("Left", "Right")
 		if direction:
 			velocity.x = direction * SPEED
+			if !$Walk.playing and is_on_floor():
+				$Walk.play()
 		else:
 			velocity.x = move_toward(velocity.x, 0, SPEED)
 		#movement animation
@@ -65,7 +72,6 @@ func _physics_process(delta: float) -> void:
 		$PlayerHitbox.disabled = true
 	else:
 		$PlayerHitbox.disabled = false
-		
 		
 func _process(_delta: float) -> void:
 	#mask switching

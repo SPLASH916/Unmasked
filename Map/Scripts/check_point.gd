@@ -1,4 +1,9 @@
 extends Area2D
 
+var done = false
 func _on_body_entered(_body: Node2D) -> void:
-	CheckPoints.current_cp = position
+	if _body.is_in_group("Player"):
+		CheckPoints.current_cp = position
+		if done == false:
+			$AudioStreamPlayer2D.play()
+			done = true

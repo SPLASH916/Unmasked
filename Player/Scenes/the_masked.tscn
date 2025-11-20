@@ -1,16 +1,38 @@
-[gd_scene load_steps=82 format=3 uid="uid://djlic05xcybg7"]
+[gd_scene load_steps=96 format=3 uid="uid://djlic05xcybg7"]
 
 [ext_resource type="Script" uid="uid://bqyrjv84ntlq2" path="res://Player/Scripts/the_masked.gd" id="1_amb87"]
+[ext_resource type="Texture2D" uid="uid://bgpx4i3otqoal" path="res://Player/Assets/jump_m0.png" id="2_04w6v"]
 [ext_resource type="Texture2D" uid="uid://b2njxi0otob80" path="res://Player/Assets/base_idle.png" id="2_bf0wb"]
+[ext_resource type="Texture2D" uid="uid://26xlty5jhm2m" path="res://Player/Assets/jump_m2.png" id="3_0ng0x"]
 [ext_resource type="Texture2D" uid="uid://fba3gw4clpv6" path="res://Player/Assets/mask0_run.png" id="3_bf0wb"]
 [ext_resource type="Texture2D" uid="uid://bocileidreb8i" path="res://Player/Assets/mask1_idle.png" id="3_x7yi0"]
 [ext_resource type="Texture2D" uid="uid://bs8yb3vjtxryt" path="res://Player/Assets/mask2_idle.png" id="4_8ttrq"]
+[ext_resource type="Texture2D" uid="uid://ctu0r5ds7c8h5" path="res://Player/Assets/jump_m1.png" id="4_dkviy"]
+[ext_resource type="Texture2D" uid="uid://4wtksipkbdlm" path="res://Player/Assets/jump_m3.png" id="5_i2e8o"]
 [ext_resource type="Texture2D" uid="uid://hhh6qcqd7yct" path="res://Player/Assets/mask3_idle.png" id="5_v6b26"]
 [ext_resource type="Texture2D" uid="uid://dhefwfjgudc2" path="res://Player/Assets/mask1_run.png" id="7_v6b26"]
 [ext_resource type="Texture2D" uid="uid://b88sitlf36rnx" path="res://Player/Assets/mask2_run.png" id="8_pmt53"]
 [ext_resource type="Texture2D" uid="uid://dehapxgmje6sa" path="res://Player/Assets/mask3_run.png" id="9_04w6v"]
 [ext_resource type="Texture2D" uid="uid://ee4vfli2pj3v" path="res://Player/Assets/mask_transtion.png" id="10_o5xbi"]
-[ext_resource type="AudioStream" uid="uid://dbogbpxf6505x" path="res://Player/Sfx/glitch-sound-effect-hd-379466.mp3" id="11_pmt53"]
+[ext_resource type="AudioStream" uid="uid://b0i662731jl0w" path="res://Player/Sfx/Mask_swap.wav" id="11_pmt53"]
+[ext_resource type="AudioStream" uid="uid://vmk14p7pa5oi" path="res://Player/Sfx/Jump Initiate.wav" id="16_dkviy"]
+[ext_resource type="AudioStream" uid="uid://b82xpob751ids" path="res://Player/Sfx/Footstep Grass 3.wav" id="17_i2e8o"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ivyhr"]
+atlas = ExtResource("2_04w6v")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g1rru"]
+atlas = ExtResource("3_0ng0x")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_umtat"]
+atlas = ExtResource("4_dkviy")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_md2h3"]
+atlas = ExtResource("5_i2e8o")
+region = Rect2(128, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3o2bt"]
 atlas = ExtResource("2_bf0wb")
@@ -139,6 +161,22 @@ region = Rect2(384, 0, 64, 64)
 [sub_resource type="AtlasTexture" id="AtlasTexture_0h34e"]
 atlas = ExtResource("5_v6b26")
 region = Rect2(448, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gwwcu"]
+atlas = ExtResource("2_04w6v")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f2q3t"]
+atlas = ExtResource("3_0ng0x")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3w87i"]
+atlas = ExtResource("4_dkviy")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_komnr"]
+atlas = ExtResource("5_i2e8o")
+region = Rect2(0, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_04w6v"]
 atlas = ExtResource("3_bf0wb")
@@ -272,6 +310,38 @@ region = Rect2(448, 0, 64, 64)
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_ivyhr")
+}],
+"loop": false,
+"name": &"Falling-mask0",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g1rru")
+}],
+"loop": false,
+"name": &"Falling-mask1",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_umtat")
+}],
+"loop": false,
+"name": &"Falling-mask2",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_md2h3")
+}],
+"loop": false,
+"name": &"Falling-mask3",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_3o2bt")
 }, {
 "duration": 1.0,
@@ -384,6 +454,38 @@ animations = [{
 }],
 "loop": false,
 "name": &"Idle-mask3",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gwwcu")
+}],
+"loop": false,
+"name": &"Jumping-mask0",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f2q3t")
+}],
+"loop": false,
+"name": &"Jumping-mask1",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3w87i")
+}],
+"loop": false,
+"name": &"Jumping-mask2",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_komnr")
+}],
+"loop": false,
+"name": &"Jumping-mask3",
 "speed": 10.0
 }, {
 "frames": [{
@@ -504,7 +606,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dqsxv"]
-size = Vector2(25, 55.652176)
+size = Vector2(14, 46.376812)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_e0dqf"]
 atlas = ExtResource("10_o5xbi")
@@ -535,17 +637,26 @@ animations = [{
 "speed": 10.0
 }]
 
-[node name="The Masked" type="CharacterBody2D"]
+[node name="The Masked" type="CharacterBody2D" groups=["Player"]]
 script = ExtResource("1_amb87")
 
 [node name="PlayerAnimation" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_04w6v")
-animation = &"Idle-mask3"
+animation = &"Idle-mask1"
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="Camera2D" type="Camera2D" parent="PlayerAnimation"]
+position = Vector2(25, 0)
+zoom = Vector2(1.2, 1.2)
+limit_left = 712
+limit_right = 5200
+limit_bottom = 0
+limit_smoothed = true
+position_smoothing_speed = 10.0
+drag_vertical_enabled = true
+drag_top_margin = 0.6
 
 [node name="PlayerHitbox" type="CollisionShape2D" parent="."]
-position = Vector2(0.5, 1.0000002)
+position = Vector2(2, 6)
 scale = Vector2(1, 1.078125)
 shape = SubResource("RectangleShape2D_dqsxv")
 
@@ -558,4 +669,24 @@ animation = &"Mask-Transition"
 
 [node name="MaskTransitionSound" type="AudioStreamPlayer2D" parent="MaskAnimation"]
 stream = ExtResource("11_pmt53")
+bus = &"Sfx"
+
+[node name="CoyoteTimer" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+
+[node name="JumpBufferTimer" type="Timer" parent="."]
+wait_time = 0.12
+one_shot = true
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+position = Vector2(2, -19)
+target_position = Vector2(0, 49)
+
+[node name="Jump" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("16_dkviy")
+bus = &"Sfx"
+
+[node name="Walk" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("17_i2e8o")
 bus = &"Sfx"

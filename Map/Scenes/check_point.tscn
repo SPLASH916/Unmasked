@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://dw5o6rhv6ep70"]
+
+[ext_resource type="Script" uid="uid://b7cuy78vxgrtw" path="res://Map/Scripts/check_point.gd" id="1_lkirt"]
+[ext_resource type="AudioStream" uid="uid://btebl15v4vmbi" path="res://Map/Sfx/Checkpoint 2.wav" id="2_3qra1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_706fc"]
+size = Vector2(19, 61)
+
+[node name="CheckPoint" type="Area2D"]
+script = ExtResource("1_lkirt")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, -30.5)
+shape = SubResource("RectangleShape2D_706fc")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_3qra1")
+bus = &"Sfx"
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
