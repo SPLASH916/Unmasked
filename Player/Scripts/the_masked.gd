@@ -19,7 +19,8 @@ var gravity = 12.0
 const max_gravity =14.5
 
 func _on_ready() -> void:
-	position = Vector2(819,-63)
+	CheckPoints.current_cp = Vector2(845.0,0.0)
+	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	
 func _physics_process(delta: float) -> void:
 	if allowmoving:
@@ -62,13 +63,13 @@ func _physics_process(delta: float) -> void:
 		if !is_on_floor():
 			if velocity.y < 0:
 				$PlayerAnimation.play(current_jumping_animation)
-			if velocity.y > 0:
+			if velocity.y > 0 and !is_on_floor():
 				$PlayerAnimation.play(current_falling_animation)
 		if direction == 0 and is_on_floor():
 			$PlayerAnimation.play(current_idle_animation)
 		move_and_slide()
 	#bugfix
-	if $RayCast2D.is_colliding():
+	if $RayCast2D.is_colliding() or $RayCast2D2.is_colliding():
 		$PlayerHitbox.disabled = true
 	else:
 		$PlayerHitbox.disabled = false
